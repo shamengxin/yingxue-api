@@ -1,6 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/../../Maven/repository-3.8.7/org/springframework/boot/spring-boot-starter-parent/2.2.5.RELEASE/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-categories/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-categories/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-commons/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-commons/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-gateway/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-gateway/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-search/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-search/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-sms/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-sms/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-users/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-users/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-videos/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/yingxue-videos/src/main/resources" charset="UTF-8" />
     <file url="PROJECT" charset="UTF-8" />
   </component>
 </project>
