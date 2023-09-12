@@ -1,6 +1,7 @@
 package com.shamengxin.controller;
 
 import cn.hutool.core.util.RandomUtil;
+import com.shamengxin.contants.RedisPre;
 import com.shamengxin.vo.MsgVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang.RandomStringUtils;
@@ -31,7 +32,7 @@ public class SMSController {
         log.info("发送短信的手机号: {}",phone);
 
         //2. 判断此手机号的验证码是否在有效期
-        String timeoutKey = "timeout_" + phone;
+        String timeoutKey = RedisPre.TIMEOUT + phone;
         if (stringRedisTemplate.hasKey(timeoutKey)) {
             throw new RuntimeException("提示: 不允许重复发送！");
         }
@@ -39,11 +40,11 @@ public class SMSController {
         String code = RandomStringUtils.randomNumeric(4);
         log.info("验证码: {}",code);
         //3. 将对应验证码放入redis中
-        String phoneKey = "phone_" + phone;
+        String phoneKey = RedisPre.PHONE + phone;
         stringRedisTemplate.opsForValue().set(phoneKey,code,10, TimeUnit.MINUTES);
 
         //4.如果验证码在有效期内，不允许重新发送
-        stringRedisTemplate.opsForValue().set(timeoutKey,"true",15,TimeUnit.MINUTES);
+        stringRedisTemplate.opsForValue().set(timeoutKey,"true",60,TimeUnit.SECONDS);
     }
 
 }

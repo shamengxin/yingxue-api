@@ -1,11 +1,10 @@
 server:
-  port: 9993
+  port: 9992
 spring:
   application:
-    name: API-SMS
+    name: API-SEARCH
   cloud:
     nacos:
       server-addr: 192.168.108.130:8848
-  redis:
-    host: 192.168.108.130
-    port: 6379
+
+

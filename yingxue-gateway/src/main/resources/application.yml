@@ -1,0 +1,9 @@
+server:
+  port: 9999
+
+spring:
+  application:
+    name: API-GATEWAY
+  cloud:
+    nacos:
+      server-addr: 192.168.108.130:8848
