@@ -1,5 +1,8 @@
 package com.shamengxin.entity;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.Date;
 import java.io.Serializable;
 
@@ -9,6 +12,7 @@ import java.io.Serializable;
  * @author makejava
  * @since 2023-09-12 22:46:05
  */
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class User implements Serializable {
     private static final long serialVersionUID = -70451177358151087L;
     
@@ -32,6 +36,7 @@ public class User implements Serializable {
     /**
      * 是否绑定手机号
      */
+    @JsonProperty("phone_linked")
     private Integer phoneLinked;
     /**
      * 微信openid
@@ -40,6 +45,7 @@ public class User implements Serializable {
     /**
      * 是否绑定微信
      */
+    @JsonProperty("wechat_linked")
     private Integer wechatLinked;
     /**
      * 关注数
@@ -49,11 +55,14 @@ public class User implements Serializable {
      * 粉丝数
      */
     private Integer followersCount;
-    
+
+    @JsonProperty("created_at")
     private Date createdAt;
-    
+
+    @JsonProperty("updated_at")
     private Date updatedAt;
-    
+
+    @JsonProperty("deleted_at")
     private Date deletedAt;
 
 
