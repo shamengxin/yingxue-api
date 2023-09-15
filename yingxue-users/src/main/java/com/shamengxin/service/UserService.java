@@ -14,4 +14,6 @@ public interface UserService {
     User findPhone(String phone);
 
     User insert(User user);
+
+    void update(User user);
 }

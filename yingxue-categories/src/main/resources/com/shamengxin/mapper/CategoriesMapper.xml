@@ -11,123 +11,30 @@
         <result property="deletedAt" column="deleted_at" jdbcType="TIMESTAMP"/>
     </resultMap>
 
-    <!--查询单个-->
-    <select id="queryById" resultMap="CategoryMap">
-        select
-          id, name, parent_id, created_at, updated_at, deleted_at
+    <resultMap id="categoryListMap" type="com.shamengxin.entity.Category">
+        <result property="id" column="id" javaType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <collection property="children" javaType="list" ofType="com.shamengxin.entity.Category">
+            <result property="id" column="cid" javaType="INTEGER"/>
+            <result property="name" column="cname" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+
+    <select id="findAll" resultMap="categoryListMap">
+        select c.id, c.name, c1.id cid, c1.name cname
+        from category c
+                 left join category c1
+                           on c1.parent_id = c.id
+        where c.parent_id is null
+    </select>
+
+
+    <select id="findById" resultMap="CategoryMap">
+        select id, name
         from category
         where id = #{id}
     </select>
 
-    <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="CategoryMap">
-        select
-          id, name, parent_id, created_at, updated_at, deleted_at
-        from category
-        <where>
-            <if test="id != null">
-                and id = #{id}
-            </if>
-            <if test="name != null and name != ''">
-                and name = #{name}
-            </if>
-            <if test="parentId != null">
-                and parent_id = #{parentId}
-            </if>
-            <if test="createdAt != null">
-                and created_at = #{createdAt}
-            </if>
-            <if test="updatedAt != null">
-                and updated_at = #{updatedAt}
-            </if>
-            <if test="deletedAt != null">
-                and deleted_at = #{deletedAt}
-            </if>
-        </where>
-        limit #{pageable.offset}, #{pageable.pageSize}
-    </select>
-
-    <!--统计总行数-->
-    <select id="count" resultType="java.lang.Long">
-        select count(1)
-        from category
-        <where>
-            <if test="id != null">
-                and id = #{id}
-            </if>
-            <if test="name != null and name != ''">
-                and name = #{name}
-            </if>
-            <if test="parentId != null">
-                and parent_id = #{parentId}
-            </if>
-            <if test="createdAt != null">
-                and created_at = #{createdAt}
-            </if>
-            <if test="updatedAt != null">
-                and updated_at = #{updatedAt}
-            </if>
-            <if test="deletedAt != null">
-                and deleted_at = #{deletedAt}
-            </if>
-        </where>
-    </select>
-
-    <!--新增所有列-->
-    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into category(name, parent_id, created_at, updated_at, deleted_at)
-        values (#{name}, #{parentId}, #{createdAt}, #{updatedAt}, #{deletedAt})
-    </insert>
-
-    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into category(name, parent_id, created_at, updated_at, deleted_at)
-        values
-        <foreach collection="entities" item="entity" separator=",">
-        (#{entity.name}, #{entity.parentId}, #{entity.createdAt}, #{entity.updatedAt}, #{entity.deletedAt})
-        </foreach>
-    </insert>
-
-    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into category(name, parent_id, created_at, updated_at, deleted_at)
-        values
-        <foreach collection="entities" item="entity" separator=",">
-            (#{entity.name}, #{entity.parentId}, #{entity.createdAt}, #{entity.updatedAt}, #{entity.deletedAt})
-        </foreach>
-        on duplicate key update
-        name = values(name),
-        parent_id = values(parent_id),
-        created_at = values(created_at),
-        updated_at = values(updated_at),
-        deleted_at = values(deleted_at)
-    </insert>
-
-    <!--通过主键修改数据-->
-    <update id="update">
-        update category
-        <set>
-            <if test="name != null and name != ''">
-                name = #{name},
-            </if>
-            <if test="parentId != null">
-                parent_id = #{parentId},
-            </if>
-            <if test="createdAt != null">
-                created_at = #{createdAt},
-            </if>
-            <if test="updatedAt != null">
-                updated_at = #{updatedAt},
-            </if>
-            <if test="deletedAt != null">
-                deleted_at = #{deletedAt},
-            </if>
-        </set>
-        where id = #{id}
-    </update>
-
-    <!--通过主键删除-->
-    <delete id="deleteById">
-        delete from category where id = #{id}
-    </delete>
 
 </mapper>
 

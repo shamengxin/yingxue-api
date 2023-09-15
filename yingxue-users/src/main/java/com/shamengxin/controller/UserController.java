@@ -1,29 +1,33 @@
 package com.shamengxin.controller;
 
-import ch.qos.logback.core.net.ObjectWriter;
 import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.errorprone.annotations.Var;
 import com.shamengxin.annotations.RequiredToken;
 import com.shamengxin.contants.RedisPre;
+
 import com.shamengxin.entity.User;
+import com.shamengxin.entity.Video;
+import com.shamengxin.feignclients.VideosClient;
 import com.shamengxin.service.UserService;
 import com.shamengxin.util.ImageUtils;
+import com.shamengxin.util.OSSUtils;
+import com.shamengxin.utils.JSONUtils;
 import com.shamengxin.vo.MsgVO;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.ObjectUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -32,28 +36,113 @@ public class UserController {
 
     private StringRedisTemplate stringRedisTemplate;
     private UserService userService;
+    private VideosClient videosClient;
 
     @Autowired
-    public UserController(StringRedisTemplate stringRedisTemplate, UserService userService) {
+    public UserController(StringRedisTemplate stringRedisTemplate, UserService userService, VideosClient videosClient) {
         this.stringRedisTemplate = stringRedisTemplate;
         this.userService = userService;
+        this.videosClient = videosClient;
+    }
+
+    @PostMapping("user/videos")
+    @RequiredToken
+    public Video publishVideos(MultipartFile file, Video video, Integer category_id, HttpServletRequest request) throws IOException {
+        // 1.获取视频原始名称
+        String originalFilename = file.getOriginalFilename();
+        log.info("接收文件名称：{}", originalFilename);
+        log.info("接收到的视频信息：" + new ObjectMapper().writeValueAsString(video));
+        log.info("类别id：{}", category_id);
+        log.info("文件大小：{}", file.getSize());
+
+        // 2.获取文件的后缀
+        String ext = FilenameUtils.getExtension(originalFilename);
+
+        // 3.生成uuid文件名
+        String uuidFileName = UUID.randomUUID().toString().replace("-", "");
+
+        // 4.生成文件名
+        String newFileName = uuidFileName + "." + ext;
+
+        // 5.上传视频到oss
+        String url = OSSUtils.upload(file.getInputStream(), "videos", newFileName);
+        log.info("上传成功返回的地址：{}",url);
+
+        // 6.设置封面信息
+        String cover = url + "?x-oss-process=video/snapshot,t_30000,f_jpg,w_0,h_0,m_fast,ar_auto";
+        log.info("阿里云oss根据url截取视频封面: {}", cover);
+        // 7.设置视频信息
+        video.setCover(cover);
+        video.setLink(url);
+        video.setCategoryId(category_id);
+        // 8.获取用户信息并设施用户信息
+        User user = (User) request.getAttribute("user");
+        video.setUid(user.getId());
+
+        video.setLikes(0);
+        // 9.调用视频服务
+        Video videoResult = videosClient.publish(video);
+        log.info("视频发布成功之后放回的视频信息：{}", JSONUtils.writeValueAsString(video));
+        return videoResult;
+
+    }
+
+    /**
+     * 更新用户信息
+     */
+    @PatchMapping("user")
+    @RequiredToken
+    public User update(@RequestBody User user, HttpServletRequest request) throws JsonProcessingException {
+        // 1.获取要修改的对象
+        User userOld = (User) request.getAttribute("user");
+        String token = (String) request.getAttribute("token");
+        // 2.判断是否要更新手机号
+        if (!ObjectUtils.isEmpty(user.getCaptcha())) {
+            String phoneKey = RedisPre.PHONE + user.getPhone();
+            if (!stringRedisTemplate.hasKey(phoneKey)) throw new RuntimeException("提示：验证码已过期!");
+            String redisCaptcha = stringRedisTemplate.opsForValue().get(phoneKey);
+            if (!redisCaptcha.equals(user.getCaptcha())) throw new RuntimeException("提示：验证码输入错误!");
+            userOld.setPhone(user.getPhone());
+        }
+        if (!ObjectUtils.isEmpty(user.getName())) userOld.setName(user.getName());
+        if (!ObjectUtils.isEmpty(user.getIntro())) userOld.setIntro(user.getIntro());
+        // 3.更新用户信息
+        userService.update(userOld);
+
+        // 4.修改redis中的用户信息
+        stringRedisTemplate.opsForValue().set(RedisPre.SESSION + token, new ObjectMapper().writeValueAsString(userOld), 7, TimeUnit.DAYS);
+        return userOld;
+    }
+
+    /**
+     * 注销
+     *
+     * @param token
+     */
+    @DeleteMapping("token")
+    public void logout(String token) {
+        log.info("当前的token信息：{}", token);
+        stringRedisTemplate.delete(RedisPre.SESSION + token);
+        log.info("用户已退出!");
     }
 
     /**
      * 已登录的用户信息
+     *
      * @param request
      * @return
      */
     @RequiredToken
     @GetMapping("user")
-    public User user(HttpServletRequest request){
+    public User user(HttpServletRequest request) {
         User user = (User) request.getAttribute("user");
-        log.info("获取的用户信息为：{}",JSONUtil.toJsonStr(user));
+        log.info("获取的用户信息为：{}", JSONUtil.toJsonStr(user));
         return user;
     }
 
     /**
      * 登录
+     *
      * @param msgVO
      * @param request
      * @return

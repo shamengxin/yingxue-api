@@ -29,6 +29,9 @@
         <mybatis-plus.version>3.5.1</mybatis-plus.version>
         <druid.version>1.2.13</druid.version>
         <hutool.version>5.7.17</hutool.version>
+        <commons.fileuploadl.version>1.4</commons.fileuploadl.version>
+        <alibaba.cloud.dependencies.version>1.0.0</alibaba.cloud.dependencies.version>
+
     </properties>
 
     <!--springboot父项目-->
@@ -57,6 +60,15 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <dependency>
+                <groupId>com.alibaba.cloud</groupId>
+                <artifactId>aliyun-spring-boot-dependencies</artifactId>
+                <version>${alibaba.cloud.dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
 
             <!--lombok-->
             <dependency>
@@ -92,6 +104,16 @@
                 <artifactId>hutool-all</artifactId>
                 <version>${hutool.version}</version>
             </dependency>
+
+            <!--fileupload-->
+            <dependency>
+                <groupId>commons-fileupload</groupId>
+                <artifactId>commons-fileupload</artifactId>
+                <version>${commons.fileuploadl.version}</version>
+            </dependency>
+
+
+
         </dependencies>
     </dependencyManagement>
 

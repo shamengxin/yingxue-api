@@ -19,3 +19,10 @@ spring:
 mybatis-plus:
   mapper-locations: classpath:com/shamengxin/mapper/*.xml
   type-aliases-package: com.shamengxin.entity
+
+oss:
+  accessKeyId: LTAI5t5fVrZJgkr9EAR415bF
+  secret: nQ8MpFhXiCPISzAGBRqZemVJkoBq5t
+  endpoint: http://oss-cn-wuhan-lr.aliyuncs.com
+  bucketName: yingxue-shamengxin
+  bucketIp: https://yingxue-shamengxin.oss-cn-wuhan-lr.aliyuncs.com

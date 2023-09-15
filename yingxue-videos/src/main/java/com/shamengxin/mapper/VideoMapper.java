@@ -1,6 +1,7 @@
 package com.shamengxin.mapper;
 
 
+import com.shamengxin.entity.Video;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -13,6 +14,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface VideoMapper {
 
 
-
+    void insert(Video video);
 }
 

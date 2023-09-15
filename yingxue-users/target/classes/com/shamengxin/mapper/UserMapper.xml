@@ -18,7 +18,7 @@
         <result property="deletedAt" column="deleted_at" jdbcType="TIMESTAMP"/>
     </resultMap>
     <!--插入-->
-    <insert id="insert"  keyProperty="id" useGeneratedKeys="true">
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
         insert into user(name,
                          avatar,
                          intro,
@@ -44,6 +44,13 @@
                 #{updatedAt},
                 #{deletedAt})
     </insert>
+    <update id="update">
+        update user
+        set phone=#{phone},
+            name=#{name},
+            intro = #{intro}
+        where id = #{id}
+    </update>
 
     <!--查询单个-->
     <select id="queryById" resultMap="UserMap">

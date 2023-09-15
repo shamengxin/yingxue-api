@@ -1,7 +1,9 @@
 package com.shamengxin.service;
 
 
+import com.shamengxin.entity.Category;
 
+import java.util.List;
 
 /**
  * 分类(Category)表服务接口
@@ -12,5 +14,7 @@ package com.shamengxin.service;
 public interface CategoriesService {
 
 
+    List<Category> findAll();
 
+    Category findById(Integer id);
 }

@@ -6,6 +6,8 @@ import com.shamengxin.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
+
 /**
  * 用户(User)表服务实现类
  *
@@ -32,5 +34,11 @@ public class UserServiceImpl implements UserService {
     public User insert(User user) {
         userMapper.insert(user);
         return user;
+    }
+
+    @Override
+    public void update(User user) {
+        user.setUpdatedAt(new Date());
+        userMapper.update(user);
     }
 }

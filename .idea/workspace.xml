@@ -4,18 +4,59 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81a287da-b09b-4b5e-b6b2-7431b85799c5" name="更改" comment="用户信息的获取及优化">
-      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/annotations/RequiredToken.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/config/MvcConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/interceptors/TokenInterceptor.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/annotations/RequiredToken.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/config/MvcConfig.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/interceptors/TokenInterceptor.class" afterDir="false" />
+    <list default="true" id="81a287da-b09b-4b5e-b6b2-7431b85799c5" name="更改" comment="分类，注销，视频上传，">
+      <change afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/entity/Category.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/utils/JSONUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-search/src/main/java/com/shamengxin/config/RestClientConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-search/src/main/java/com/shamengxin/mq/VideoConsumer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-search/src/main/java/com/shamengxin/vo/VideoVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/feignclients/VideosClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/util/OSSUtils.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/controller/VideoServiceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/controller/CategoriesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/controller/CategoriesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/entity/Category.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/mapper/CategoriesMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/mapper/CategoriesMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/service/CategoriesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/service/CategoriesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/service/impl/CategoriesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/service/impl/CategoriesServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/src/main/resources/com/shamengxin/mapper/CategoriesMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/src/main/resources/com/shamengxin/mapper/CategoriesMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/controller/CategoriesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/controller/CategoriesController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/entity/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/entity/Category.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/mapper/CategoriesMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/mapper/CategoriesMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/mapper/CategoriesMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/mapper/CategoriesMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/service/CategoriesService.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/service/CategoriesService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/service/impl/CategoriesServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/service/impl/CategoriesServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-commons/target/classes/com/shamengxin/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-commons/target/classes/com/shamengxin/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-search/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-search/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-search/src/main/java/com/shamengxin/ApiSearchApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-search/src/main/java/com/shamengxin/ApiSearchApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-search/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-search/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/ApiUsersApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/ApiUsersApplication.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/entity/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/entity/User.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/interceptors/TokenInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/interceptors/TokenInterceptor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/mapper/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/resources/com/shamengxin/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/resources/com/shamengxin/mapper/UserMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/entity/User.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/entity/User.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/interceptors/TokenInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/interceptors/TokenInterceptor.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/mapper/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/service/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/service/impl/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/ApiVideosApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/ApiVideosApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/entity/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/entity/Video.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/mapper/VideoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/mapper/VideoMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/service/VideoService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/service/impl/VideoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/service/impl/VideoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/resources/application.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +111,7 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_opened_file_path": "B:/code/yingxue-api/yingxue-users/src/main/java/com/shamengxin",
+    "last_opened_file_path": "B:/code/yingxue-api/yingxue-commons/src/main/java/com/shamengxin/utils",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -78,7 +119,7 @@
     "project.structure.last.edited": "模块",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "reactor",
+    "settings.editor.selected.configurable": "preferences.sourceCode",
     "spring.configuration.checksum": "4d02905b470a4d7217d5cbbc67ae7f2e",
     "vue.rearranger.settings.migration": "true"
   },
@@ -93,6 +134,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="B:\code\yingxue-api\yingxue-commons\src\main\java\com\shamengxin\utils" />
       <recent name="B:\code\yingxue-api\yingxue-users\src\main\resources" />
       <recent name="B:\code\yingxue-api" />
     </key>
@@ -111,13 +153,26 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="Spring Boot.ApiSearchApplication">
-    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="yingxue-gateway" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shamegnxin.ApiGatewayApplication" />
+  <component name="RunManager" selected="应用程序.UserController">
+    <configuration name="UserController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.shamengxin.controller.UserController" />
+      <module name="yingxue-users" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.shamegnxin.*" />
+          <option name="PATTERN" value="com.shamengxin.controller.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ApiCategoriesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yingxue-categories" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shamengxin.ApiCategoriesApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.shamengxin.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -164,33 +219,20 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ApiVideosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="yingxue-videos" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shamengxin.ApiVideosApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.shamengxin.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.ApiCategoriesApplication" />
       <item itemvalue="Spring Boot.ApiUsersApplication" />
       <item itemvalue="Spring Boot.ApiSearchApplication" />
       <item itemvalue="Spring Boot.ApiSmsApplication" />
-      <item itemvalue="Spring Boot.ApiVideosApplication" />
+      <item itemvalue="应用程序.UserController" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="应用程序.UserController" />
+        <item itemvalue="Spring Boot.ApiCategoriesApplication" />
         <item itemvalue="Spring Boot.ApiUsersApplication" />
-        <item itemvalue="Spring Boot.ApiSearchApplication" />
         <item itemvalue="Spring Boot.ApiSmsApplication" />
-        <item itemvalue="Spring Boot.ApiVideosApplication" />
-        <item itemvalue="Spring Boot.ApiGatewayApplication" />
+        <item itemvalue="Spring Boot.ApiSearchApplication" />
       </list>
     </recent_temporary>
   </component>
@@ -208,7 +250,10 @@
       <workItem from="1694412257320" duration="2894000" />
       <workItem from="1694528099046" duration="7427000" />
       <workItem from="1694536407757" duration="9000" />
-      <workItem from="1694613634241" duration="6188000" />
+      <workItem from="1694613634241" duration="6287000" />
+      <workItem from="1694701205977" duration="6179000" />
+      <workItem from="1694762748504" duration="8474000" />
+      <workItem from="1694778936074" duration="8846000" />
     </task>
     <task id="LOCAL-00001" summary="应学用户端接口项目创建">
       <created>1694270753696</created>
@@ -245,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694536265710</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="用户信息的获取及优化">
+      <created>1694622102752</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1694622102752</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -268,7 +320,8 @@
     <MESSAGE value="模拟发送短信验证码" />
     <MESSAGE value="用户登录" />
     <MESSAGE value="用户信息的获取及优化" />
-    <option name="LAST_COMMIT_MESSAGE" value="用户信息的获取及优化" />
+    <MESSAGE value="分类，注销，视频上传，" />
+    <option name="LAST_COMMIT_MESSAGE" value="分类，注销，视频上传，" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
