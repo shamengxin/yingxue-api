@@ -63,7 +63,7 @@ public class Video implements Serializable {
 
     private String category;//类别名称
 
-    private User uploader;//用户up主信息
+    private String uploader;//用户up主信息
 
 }
 

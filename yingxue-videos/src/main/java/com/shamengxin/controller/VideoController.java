@@ -12,7 +12,7 @@ import javax.annotation.Resource;
  * @since 2023-09-12 23:20:34
  */
 @RestController
-@RequestMapping("video")
+@RequestMapping("videos")
 public class VideoController {
 
 }

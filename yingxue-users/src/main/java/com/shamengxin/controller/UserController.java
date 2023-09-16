@@ -8,6 +8,7 @@ import com.shamengxin.contants.RedisPre;
 
 import com.shamengxin.entity.User;
 import com.shamengxin.entity.Video;
+import com.shamengxin.feignclients.CategoriesClient;
 import com.shamengxin.feignclients.VideosClient;
 import com.shamengxin.service.UserService;
 import com.shamengxin.util.ImageUtils;
@@ -38,11 +39,15 @@ public class UserController {
     private UserService userService;
     private VideosClient videosClient;
 
+    private CategoriesClient categoriesClient;
+
+
     @Autowired
-    public UserController(StringRedisTemplate stringRedisTemplate, UserService userService, VideosClient videosClient) {
+    public UserController(StringRedisTemplate stringRedisTemplate, UserService userService, VideosClient videosClient, CategoriesClient categoriesClient) {
         this.stringRedisTemplate = stringRedisTemplate;
         this.userService = userService;
         this.videosClient = videosClient;
+        this.categoriesClient = categoriesClient;
     }
 
     @PostMapping("user/videos")
@@ -79,7 +84,9 @@ public class UserController {
         User user = (User) request.getAttribute("user");
         video.setUid(user.getId());
 
+        video.setCategory(categoriesClient.findById(category_id).getName());
         video.setLikes(0);
+        video.setUploader(user.getName());
         // 9.调用视频服务
         Video videoResult = videosClient.publish(video);
         log.info("视频发布成功之后放回的视频信息：{}", JSONUtils.writeValueAsString(video));

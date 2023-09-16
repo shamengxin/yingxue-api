@@ -5,58 +5,73 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="81a287da-b09b-4b5e-b6b2-7431b85799c5" name="更改" comment="分类，注销，视频上传，">
-      <change afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/entity/Category.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/utils/JSONUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-search/src/main/java/com/shamengxin/config/RestClientConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-search/src/main/java/com/shamengxin/mq/VideoConsumer.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-search/src/main/java/com/shamengxin/vo/VideoVO.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/feignclients/VideosClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/util/OSSUtils.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/controller/VideoServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/app.2cc20d23.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/categorized-videos.539adf1e.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/category.e27ec4b5.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/chunk-vendors.14b9f845.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/favorite.cd6638f3.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/history.cd6638f3.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/home.b66d33a8.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/login.1c4d229d.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/personal-edit.41603e3e.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/personal-edit~search~upload-video~video.3d195219.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/personal.0b8037e4.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/search.52864f09.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/search~video.b073d853.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/upload-video.822b5c15.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/user.e185e612.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/css/video.03df9474.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/img/add.6fff3976.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/img/default-cover.322c00ef.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/img/search.5be1f439.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/index.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/app.77a1be8f.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/categorized-videos.8af9898d.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/category.d7037aea.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/chunk-vendors.83c8d58a.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/favorite.de1b9ded.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/history.fc007e92.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/home.d069bbe2.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/login.9adea94e.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/personal-edit.16985449.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/personal-edit~search~upload-video~video.bfa7b213.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/personal.21338c86.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/search.630548b5.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/search~video.10494571.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/upload-video.d308ca34.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/user.8ed17495.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/dist/js/video.f8e6299b.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/feignclients/CategoriesClient.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/controller/CategoriesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/controller/CategoriesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/entity/Category.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/mapper/CategoriesMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/mapper/CategoriesMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/service/CategoriesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/service/CategoriesService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/service/impl/CategoriesServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/src/main/java/com/shamengxin/service/impl/CategoriesServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-categories/src/main/resources/com/shamengxin/mapper/CategoriesMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/src/main/resources/com/shamengxin/mapper/CategoriesMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/controller/CategoriesController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/controller/CategoriesController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/entity/Category.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/entity/Category.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/mapper/CategoriesMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/mapper/CategoriesMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/mapper/CategoriesMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/mapper/CategoriesMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/service/CategoriesService.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/service/CategoriesService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/service/impl/CategoriesServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/service/impl/CategoriesServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/entity/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/entity/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-commons/target/classes/com/shamengxin/entity/User.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-commons/target/classes/com/shamengxin/entity/User.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-search/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-search/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-search/src/main/java/com/shamengxin/ApiSearchApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-search/src/main/java/com/shamengxin/ApiSearchApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-search/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-search/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/ApiUsersApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/ApiUsersApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-categories/target/classes/com/shamengxin/entity/Category.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/entity/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/entity/Video.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-commons/target/classes/com/shamengxin/entity/Video.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-commons/target/classes/com/shamengxin/entity/Video.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-gateway/src/main/java/com/shamegnxin/ApiGatewayApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-gateway/src/main/java/com/shamegnxin/ApiGatewayApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-gateway/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-gateway/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-gateway/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-gateway/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-gateway/target/classes/com/shamegnxin/ApiGatewayApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-gateway/target/classes/com/shamegnxin/ApiGatewayApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-search/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-search/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-search/target/classes/com/shamengxin/ApiSearchApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-search/target/classes/com/shamengxin/ApiSearchApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-sms/src/main/java/com/shamengxin/controller/SMSController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-sms/src/main/java/com/shamengxin/controller/SMSController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-sms/target/classes/com/shamengxin/controller/SMSController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-sms/target/classes/com/shamengxin/controller/SMSController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/entity/User.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/interceptors/TokenInterceptor.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/interceptors/TokenInterceptor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/impl/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/util/OSSUtils.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/util/OSSUtils.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/resources/application.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/resources/com/shamengxin/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/resources/com/shamengxin/mapper/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/ApiUsersApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/ApiUsersApplication.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/entity/User.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/interceptors/TokenInterceptor.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/interceptors/TokenInterceptor.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/mapper/UserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/service/impl/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/service/impl/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-videos/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/ApiVideosApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/ApiVideosApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/entity/Video.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/entity/Video.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/mapper/VideoMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/mapper/VideoMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/service/VideoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/service/impl/VideoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/service/impl/VideoServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/controller/VideoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/ApiVideosApplication.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/ApiVideosApplication.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/controller/VideoController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/controller/VideoController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/entity/Video.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/mapper/VideoMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/mapper/VideoMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/service/VideoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/service/VideoService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/service/impl/VideoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/service/impl/VideoServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,9 +81,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="AnnotationType" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -111,11 +126,12 @@
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "WebServerToolWindowFactoryState": "false",
     "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_opened_file_path": "B:/code/yingxue-api/yingxue-commons/src/main/java/com/shamengxin/utils",
+    "last_opened_file_path": "B:/code/yingxue-api",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "project.structure.last.edited": "模块",
     "project.structure.proportion": "0.15",
     "project.structure.side.proportion": "0.2",
@@ -134,9 +150,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="B:\code\yingxue-api" />
       <recent name="B:\code\yingxue-api\yingxue-commons\src\main\java\com\shamengxin\utils" />
       <recent name="B:\code\yingxue-api\yingxue-users\src\main\resources" />
-      <recent name="B:\code\yingxue-api" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="B:\code\yingxue-api\yingxue-videos\src\main\resources\com\shamengxin" />
@@ -153,26 +169,13 @@
       </set>
     </option>
   </component>
-  <component name="RunManager" selected="应用程序.UserController">
-    <configuration name="UserController" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="com.shamengxin.controller.UserController" />
-      <module name="yingxue-users" />
+  <component name="RunManager" selected="Spring Boot.ApiVideosApplication">
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yingxue-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shamegnxin.ApiGatewayApplication" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="com.shamengxin.controller.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ApiCategoriesApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
-      <module name="yingxue-categories" />
-      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shamengxin.ApiCategoriesApplication" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.shamengxin.*" />
+          <option name="PATTERN" value="com.shamegnxin.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -219,18 +222,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ApiVideosApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <module name="yingxue-videos" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="com.shamengxin.ApiVideosApplication" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.shamengxin.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
-      <item itemvalue="Spring Boot.ApiCategoriesApplication" />
+      <item itemvalue="Spring Boot.ApiGatewayApplication" />
+      <item itemvalue="Spring Boot.ApiVideosApplication" />
       <item itemvalue="Spring Boot.ApiUsersApplication" />
       <item itemvalue="Spring Boot.ApiSearchApplication" />
       <item itemvalue="Spring Boot.ApiSmsApplication" />
-      <item itemvalue="应用程序.UserController" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="应用程序.UserController" />
-        <item itemvalue="Spring Boot.ApiCategoriesApplication" />
         <item itemvalue="Spring Boot.ApiUsersApplication" />
+        <item itemvalue="Spring Boot.ApiGatewayApplication" />
+        <item itemvalue="Spring Boot.ApiVideosApplication" />
         <item itemvalue="Spring Boot.ApiSmsApplication" />
         <item itemvalue="Spring Boot.ApiSearchApplication" />
       </list>
@@ -253,7 +269,8 @@
       <workItem from="1694613634241" duration="6287000" />
       <workItem from="1694701205977" duration="6179000" />
       <workItem from="1694762748504" duration="8474000" />
-      <workItem from="1694778936074" duration="8846000" />
+      <workItem from="1694778936074" duration="8919000" />
+      <workItem from="1694873462921" duration="7159000" />
     </task>
     <task id="LOCAL-00001" summary="应学用户端接口项目创建">
       <created>1694270753696</created>
@@ -297,7 +314,14 @@
       <option name="project" value="LOCAL" />
       <updated>1694622102752</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="分类，注销，视频上传，">
+      <created>1694794143403</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1694794143403</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -322,6 +346,17 @@
     <MESSAGE value="用户信息的获取及优化" />
     <MESSAGE value="分类，注销，视频上传，" />
     <option name="LAST_COMMIT_MESSAGE" value="分类，注销，视频上传，" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/controller/UserController.java</url>
+          <line>66</line>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

@@ -13,6 +13,12 @@ spring:
     url: jdbc:mysql://192.168.108.130:3306/yingxue?characterEncoding=UTF-8&useSSL=false
     username: root
     password: heyufeng
+  rabbitmq:
+    host: 192.168.108.130
+    port: 5672
+    username: admin
+    password: admin
+    virtual-host: /
 
   mybatis-plus:
     mapper-locations: classpath:com/shamengxin/mapper/*.xml

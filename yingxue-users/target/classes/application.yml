@@ -15,7 +15,25 @@ spring:
     url: jdbc:mysql://192.168.108.130:3306/yingxue?characterEncoding=UTF-8&useSSL=false
     username: root
     password: heyufeng
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 500MB
 
 mybatis-plus:
   mapper-locations: classpath:com/shamengxin/mapper/*.xml
   type-aliases-package: com.shamengxin.entity
+  
+alibaba:
+  cloud:
+    access-key: LTAI5t5fVrZJgkr9EAR415bF
+    secret-key: nQ8MpFhXiCPISzAGBRqZemVJkoBq5t
+    oss:
+      endpoint: http://oss-cn-wuhan-lr.aliyuncs.com
+
+feign:
+  client:
+    config:
+      default:
+        connect-timeout: 100000
+        read-timeout: 100000

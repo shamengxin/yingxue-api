@@ -18,6 +18,7 @@ import java.util.List;
  */
 @RestController
 @Slf4j
+@RequestMapping("categories")
 public class CategoriesController {
     private CategoriesService categoriesService;
 
@@ -26,7 +27,7 @@ public class CategoriesController {
         this.categoriesService = categoriesService;
     }
 
-    @GetMapping("categories/{id}")
+    @GetMapping("{id}")
     public Category findById(@PathVariable("id") Integer id){
         log.info("接收到的类别id：{}",id);
         return categoriesService.findById(id);
@@ -37,7 +38,7 @@ public class CategoriesController {
      *
      * @return
      */
-    @GetMapping("categories")
+    @GetMapping
     public List<Category> findAll() {
         List<Category> categories = categoriesService.findAll();
         log.info("查询的一级类别的列表总数为:{}", categories.size());
