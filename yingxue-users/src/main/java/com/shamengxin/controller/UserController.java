@@ -8,6 +8,7 @@ import com.shamengxin.contants.RedisPre;
 
 import com.shamengxin.entity.User;
 import com.shamengxin.entity.Video;
+import com.shamengxin.vo.VideoVO;
 import com.shamengxin.feignclients.CategoriesClient;
 import com.shamengxin.feignclients.VideosClient;
 import com.shamengxin.service.UserService;
@@ -17,6 +18,7 @@ import com.shamengxin.utils.JSONUtils;
 import com.shamengxin.vo.MsgVO;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.util.ObjectUtils;
@@ -52,7 +54,7 @@ public class UserController {
 
     @PostMapping("user/videos")
     @RequiredToken
-    public Video publishVideos(MultipartFile file, Video video, Integer category_id, HttpServletRequest request) throws IOException {
+    public VideoVO publishVideos(MultipartFile file, Video video, Integer category_id, HttpServletRequest request) throws IOException {
         // 1.获取视频原始名称
         String originalFilename = file.getOriginalFilename();
         log.info("接收文件名称：{}", originalFilename);
@@ -74,7 +76,7 @@ public class UserController {
         log.info("上传成功返回的地址：{}",url);
 
         // 6.设置封面信息
-        String cover = url + "?x-oss-process=video/snapshot,t_30000,f_jpg,w_0,h_0,m_fast,ar_auto";
+        String cover = url + "/videos/"+newFileName+"?x-oss-process=video/snapshot,t_3000,f_jpg,w_0,h_0,m_fast,ar_auto";
         log.info("阿里云oss根据url截取视频封面: {}", cover);
         // 7.设置视频信息
         video.setCover(cover);
@@ -89,8 +91,10 @@ public class UserController {
         video.setUploader(user.getName());
         // 9.调用视频服务
         Video videoResult = videosClient.publish(video);
-        log.info("视频发布成功之后放回的视频信息：{}", JSONUtils.writeValueAsString(video));
-        return videoResult;
+        VideoVO videoVO = new VideoVO();
+        BeanUtils.copyProperties(videoResult, videoVO);
+        log.info("视频发布成功之后放回的视频信息：{}", JSONUtils.writeValueAsString(videoVO));
+        return videoVO;
 
     }
 

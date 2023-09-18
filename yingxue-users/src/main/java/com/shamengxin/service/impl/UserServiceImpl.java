@@ -41,4 +41,10 @@ public class UserServiceImpl implements UserService {
         user.setUpdatedAt(new Date());
         userMapper.update(user);
     }
+
+    @Override
+    public User queryById(Integer id) {
+        User user = userMapper.queryById(id);
+        return user;
+    }
 }

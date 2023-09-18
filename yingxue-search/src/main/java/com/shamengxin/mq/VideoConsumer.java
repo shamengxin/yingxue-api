@@ -3,6 +3,7 @@ package com.shamengxin.mq;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shamengxin.entity.Video;
+import com.shamengxin.utils.JSONUtils;
 import com.shamengxin.vo.VideoVO;
 import lombok.extern.slf4j.Slf4j;
 import org.elasticsearch.action.index.IndexRequest;
@@ -14,6 +15,7 @@ import org.springframework.amqp.rabbit.annotation.Exchange;
 import org.springframework.amqp.rabbit.annotation.Queue;
 import org.springframework.amqp.rabbit.annotation.QueueBinding;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -35,10 +37,14 @@ public class VideoConsumer {
     public void receive(String message) throws IOException {
         log.info("MQ接收的video信息为：{}",message);
         // 1.将mq中的video的json格式转化为对象
-        VideoVO videoVo = new ObjectMapper().readValue(message, VideoVO.class);
+        Video video = new ObjectMapper().readValue(message, Video.class);
+        VideoVO videoVo = new VideoVO();
+        BeanUtils.copyProperties(video, videoVo)   ;
 
-        IndexRequest indexRequest = new IndexRequest("video","video",videoVo.getId().toString());
-        indexRequest.source(message, XContentType.JSON);
+        IndexRequest indexRequest = new IndexRequest("video");
+        indexRequest.id(videoVo.getId().toString())
+                .type("_doc")
+                .source(JSONUtils.writeValueAsString(videoVo), XContentType.JSON);
         IndexResponse indexResponse = restHighLevelClient.index(indexRequest, RequestOptions.DEFAULT);
         log.info("video信息录入ES的状态为：{}",indexResponse.status());
 

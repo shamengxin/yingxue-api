@@ -34,7 +34,7 @@ spring:
         - id: videos_router
           uri: lb://API-VIDEOS
           predicates:
-            - Path=/api/videos/**
+            - Path=/api/recommends,/api/videos/**
           filters:
             - StripPrefix=1
         # 搜索服务

@@ -55,6 +55,12 @@
             <artifactId>spring-cloud-openfeign-core</artifactId>
         </dependency>
 
+        <!--spring-cloud-stater-openfeign-->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
+
     </dependencies>
 
 </project>

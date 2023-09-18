@@ -22,6 +22,7 @@ public class VideoServiceController {
     @PostMapping("publish")
     public Video publish(@RequestBody Video video){
         log.info("接收到的video：{}",video);
-        return videoService.insert(video);
+        Video videoReturn = videoService.insert(video);
+        return videoReturn;
     }
 }
