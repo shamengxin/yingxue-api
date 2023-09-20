@@ -6,8 +6,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shamengxin.annotations.RequiredToken;
 import com.shamengxin.contants.RedisPre;
 
+import com.shamengxin.entity.Played;
 import com.shamengxin.entity.User;
 import com.shamengxin.entity.Video;
+import com.shamengxin.service.PlayedService;
 import com.shamengxin.vo.VideoVO;
 import com.shamengxin.feignclients.CategoriesClient;
 import com.shamengxin.feignclients.VideosClient;
@@ -43,15 +45,102 @@ public class UserController {
 
     private CategoriesClient categoriesClient;
 
+    private PlayedService playedService;
+
 
     @Autowired
-    public UserController(StringRedisTemplate stringRedisTemplate, UserService userService, VideosClient videosClient, CategoriesClient categoriesClient) {
+    public UserController(StringRedisTemplate stringRedisTemplate, UserService userService, VideosClient videosClient, CategoriesClient categoriesClient, PlayedService playedService) {
         this.stringRedisTemplate = stringRedisTemplate;
         this.userService = userService;
         this.videosClient = videosClient;
         this.categoriesClient = categoriesClient;
+        this.playedService = playedService;
     }
 
+    /**
+     * 用户取消点赞视频
+     * @param videoId
+     * @param request
+     */
+    @DeleteMapping("user/liked/{id}")
+    @RequiredToken
+    public void disLiked(@PathVariable("id") Integer videoId, HttpServletRequest request){
+        // 1.获取用户信息
+        User user = (User) request.getAttribute("user");
+        log.info("接收到的视频id为：{}",videoId);
+
+        // 2.将视频点赞数减1
+        stringRedisTemplate.opsForValue().decrement(RedisPre.VIDEO_LIKED_COUNT+videoId);
+
+        // 3.将点按视频移除
+        stringRedisTemplate.opsForSet().remove(RedisPre.USER_LIKE_+ user.getId(),videoId.toString());
+
+        // 4.
+
+    }
+
+    /**
+     * 用户点赞视频
+     * @param videoId
+     * @param request
+     */
+    @PutMapping("user/liked/{id}")
+    @RequiredToken
+    public void liked(@PathVariable("id") Integer videoId, HttpServletRequest request){
+        // 1.获取用户信息
+        User user = (User) request.getAttribute("user");
+        log.info("接收到的视频id为：{}",videoId);
+
+        // 2.将视频点赞数加1
+        stringRedisTemplate.opsForValue().increment(RedisPre.VIDEO_LIKED_COUNT+videoId);
+
+        // 3.将用户点赞视频列表加入到redis中
+        stringRedisTemplate.opsForSet().add(RedisPre.USER_LIKE_+ user.getId(),videoId.toString());
+
+        // 4.
+
+    }
+
+    /**
+     * 视频播放
+     * @param videoId
+     * @param request
+     */
+    @PutMapping("user/played/{id}")
+    public void played(@PathVariable("id") Integer videoId, HttpServletRequest request){
+
+        // 将redis中播放次数+1
+        stringRedisTemplate.opsForValue().increment(RedisPre.VIDEO_PLAYED_COUNT+videoId);
+        //1.获取登录用户
+        User user = getUser(request);
+        if (!ObjectUtils.isEmpty(user)){
+            Played played = playedService.findByUidAndVideoId(user.getId(),videoId);
+            if(!ObjectUtils.isEmpty(played)){
+                played.setUpdatedAt(new Date());
+                playedService.update(played);
+            }else {
+                played = new Played();
+                played.setUid(user.getId());
+                played.setVideoId(videoId);
+                played = playedService.insert(played);
+                log.info("当前用户的播放记录保存成功，信息为{}", played);
+            }
+        }
+
+
+    }
+
+
+
+    /**
+     * 视频上传
+     * @param file
+     * @param video
+     * @param category_id
+     * @param request
+     * @return
+     * @throws IOException
+     */
     @PostMapping("user/videos")
     @RequiredToken
     public VideoVO publishVideos(MultipartFile file, Video video, Integer category_id, HttpServletRequest request) throws IOException {
@@ -198,5 +287,20 @@ public class UserController {
         stringRedisTemplate.opsForValue().set(tokenKey, new ObjectMapper().writeValueAsString(findUser), 7, TimeUnit.DAYS);
         result.put("token", token);
         return result;
+    }
+
+    // 通过token获取用户信息
+    private User getUser(HttpServletRequest request) {
+
+        String token = request.getParameter("token");
+        log.info("获取的token为：{}",token);
+        String userJson = stringRedisTemplate.opsForValue().get(RedisPre.SESSION + token);
+        User user = null;
+        try {
+           user = new ObjectMapper().readValue(userJson, User.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        return user;
     }
 }

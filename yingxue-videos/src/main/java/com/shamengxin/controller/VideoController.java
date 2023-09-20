@@ -30,8 +30,8 @@ public class VideoController {
     }
 
     @GetMapping("videos/{id}")
-    public VideoDetail detail(@PathVariable("id" ) Integer videoId){
-        return videoService.detail(videoId);
+    public VideoDetail detail(@PathVariable("id" ) Integer videoId ,@RequestParam(value = "token",required = false) String token){
+        return videoService.detail(videoId,token);
     }
 
     /**

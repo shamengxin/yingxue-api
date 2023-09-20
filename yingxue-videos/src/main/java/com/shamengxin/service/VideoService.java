@@ -22,5 +22,5 @@ public interface VideoService {
 
     List<VideoVO> queryByCategory(Integer page, Integer rows, Integer categoryId);
 
-    VideoDetail detail(Integer videoId);
+    VideoDetail detail(Integer videoId, String token);
 }

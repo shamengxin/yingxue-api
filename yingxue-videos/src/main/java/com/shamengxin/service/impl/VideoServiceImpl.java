@@ -1,6 +1,9 @@
 package com.shamengxin.service.impl;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.shamengxin.contants.RedisPre;
 import com.shamengxin.entity.Category;
 import com.shamengxin.entity.User;
 import com.shamengxin.entity.Video;
@@ -15,7 +18,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.util.ObjectUtils;
 
 
 import java.util.ArrayList;
@@ -40,12 +45,15 @@ public class VideoServiceImpl implements VideoService {
 
     private CategoriesClient categoriesClient;
 
+    private StringRedisTemplate stringRedisTemplate;
+
     @Autowired
-    public VideoServiceImpl(VideoMapper videoMapper, RabbitTemplate rabbitTemplate, UsersClient usersClient, CategoriesClient categoriesClient) {
+    public VideoServiceImpl(VideoMapper videoMapper, RabbitTemplate rabbitTemplate, UsersClient usersClient, CategoriesClient categoriesClient, StringRedisTemplate stringRedisTemplate) {
         this.videoMapper = videoMapper;
         this.rabbitTemplate = rabbitTemplate;
         this.usersClient = usersClient;
         this.categoriesClient = categoriesClient;
+        this.stringRedisTemplate = stringRedisTemplate;
     }
 
 
@@ -76,7 +84,7 @@ public class VideoServiceImpl implements VideoService {
     }
 
     @Override
-    public VideoDetail detail(Integer videoId) {
+    public VideoDetail detail(Integer videoId, String token) {
 
         VideoDetail videoDetail = new VideoDetail();
 
@@ -90,10 +98,37 @@ public class VideoServiceImpl implements VideoService {
         // 4.获取category信息
         Category category = categoriesClient.findById(video.getCategoryId());
         videoDetail.setCategory(category.getName());
-        // fixme 这里后期需要修改
-        // 5.设置剩余信息
-        videoDetail.setPlaysCount(0);
-        videoDetail.setLikesCount(0);
+
+        // 5.视频播放次数
+        videoDetail.setPlaysCount(10);
+        String PlayedCount = stringRedisTemplate.opsForValue().get(RedisPre.VIDEO_PLAYED_COUNT + videoId);
+        if (!ObjectUtils.isEmpty(PlayedCount)){
+            videoDetail.setPlaysCount(Integer.valueOf(PlayedCount));
+        }
+
+        // 6.视频点赞次数
+        videoDetail.setLikesCount(10);
+        String likedCount = stringRedisTemplate.opsForValue().get(RedisPre.VIDEO_LIKED_COUNT + videoId);
+        if (!ObjectUtils.isEmpty(likedCount)){
+            videoDetail.setLikesCount(Integer.valueOf(likedCount));
+        }
+
+        // 7.判断用户是否登录
+        if(!ObjectUtils.isEmpty(token)){
+            String UserJson = stringRedisTemplate.opsForValue().get(RedisPre.SESSION + token);
+            User userLogin = new User();
+            try {
+               userLogin = new ObjectMapper().readValue(UserJson,User.class);
+            } catch (JsonProcessingException e) {
+                e.printStackTrace();
+            }
+            // a.是否点赞
+            videoDetail.setLiked(stringRedisTemplate.opsForSet().isMember(RedisPre.USER_LIKE_+userLogin.getId(),videoId.toString()));
+            // b.是否不喜欢
+            // c.是否收藏
+        }
+
+
 
         return videoDetail;
     }
