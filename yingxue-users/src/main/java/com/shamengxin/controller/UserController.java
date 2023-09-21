@@ -6,9 +6,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shamengxin.annotations.RequiredToken;
 import com.shamengxin.contants.RedisPre;
 
+import com.shamengxin.entity.Favorite;
 import com.shamengxin.entity.Played;
 import com.shamengxin.entity.User;
 import com.shamengxin.entity.Video;
+import com.shamengxin.service.FavoriteService;
 import com.shamengxin.service.PlayedService;
 import com.shamengxin.vo.VideoVO;
 import com.shamengxin.feignclients.CategoriesClient;
@@ -18,6 +20,7 @@ import com.shamengxin.util.ImageUtils;
 import com.shamengxin.util.OSSUtils;
 import com.shamengxin.utils.JSONUtils;
 import com.shamengxin.vo.MsgVO;
+import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.BeanUtils;
@@ -29,10 +32,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 @Slf4j
@@ -47,14 +47,105 @@ public class UserController {
 
     private PlayedService playedService;
 
+    private FavoriteService favoriteService;
 
     @Autowired
-    public UserController(StringRedisTemplate stringRedisTemplate, UserService userService, VideosClient videosClient, CategoriesClient categoriesClient, PlayedService playedService) {
+    public UserController(StringRedisTemplate stringRedisTemplate, UserService userService, VideosClient videosClient, CategoriesClient categoriesClient, PlayedService playedService, FavoriteService favoriteService) {
         this.stringRedisTemplate = stringRedisTemplate;
         this.userService = userService;
         this.videosClient = videosClient;
         this.categoriesClient = categoriesClient;
         this.playedService = playedService;
+        this.favoriteService = favoriteService;
+    }
+
+
+    @GetMapping("user/played")
+    @RequiredToken
+    public List<VideoVO> played(@RequestParam(value = "page",defaultValue = "1") Integer page,
+                                @RequestParam(value = "per_page",defaultValue = "5") Integer rows,
+                                HttpServletRequest request){
+        // 1.获取用户信息
+        User user = (User) request.getAttribute("user");
+        // 2.获取当前用户的播放记录
+        if (ObjectUtils.isEmpty(user)) throw new RuntimeException("提示: 无效token!");
+        List<VideoVO> videoVOS = playedService.queryByUid(user.getId(),page,rows);
+        log.info("用户播放的历史视频总数为：{}",videoVOS.size());
+        return videoVOS;
+    }
+
+    /**
+     * 用户取消收藏
+     * @param videoId
+     * @param request
+     */
+    @DeleteMapping("user/favorites/{videoId}")
+    @RequiredToken
+    public void delFavorite(@PathVariable("videoId") Integer videoId , HttpServletRequest request){
+        // 1.获取用户信息
+        User user = (User) request.getAttribute("user");
+        // 2.删除收藏视频
+        favoriteService.deleteByUidAndVideoId(user.getId(),videoId);
+    }
+
+    /**
+     * 用户收藏视频
+     * @param videoId
+     * @param request
+     */
+    @PutMapping("user/favorites/{videoId}")
+    @RequiredToken
+    public void favorite(@PathVariable("videoId") Integer videoId , HttpServletRequest request){
+        // 1.获取用户信息
+        User user = (User) request.getAttribute("user");
+        // 2. 判断当前用户是否收藏过该视频
+        Favorite favorite = favoriteService.findByUidAndVideoId(videoId,user.getId());
+        if (ObjectUtils.isEmpty(favorite)){
+            favorite = new Favorite();
+            favorite.setUid(user.getId());
+            favorite.setVideoId(videoId);
+            Date date = new Date();
+            favorite.setCreatedAt(date);
+            favorite.setUpdatedAt(date);
+            favorite = favoriteService.insert(favorite);
+            log.info("收藏信息为：{}",favorite);
+        }
+    }
+
+    /**
+     * 用户取消不喜欢
+     * @param videoId
+     * @param request
+     */
+    @DeleteMapping("user/disliked/{videoId}")
+    @RequiredToken
+    public void delDisliked(@PathVariable("videoId") Integer videoId,HttpServletRequest request){
+        // 1.获取用户信息
+        User user = (User) request.getAttribute("user");
+        // 2.将视频从不喜欢列表中移除
+        if (stringRedisTemplate.opsForSet().isMember(RedisPre.USER_DISLIKED_+user.getId(),videoId)) {
+            stringRedisTemplate.opsForSet().remove(RedisPre.USER_DISLIKED_+user.getId(),videoId);
+        }
+    }
+
+    /**
+     * 用户不喜欢
+     * @param videoId
+     * @param request
+     */
+    @PutMapping("user/disliked/{videoId}")
+    @RequiredToken
+    public void disliked(@PathVariable("videoId") Integer videoId,HttpServletRequest request){
+        // 1.获取用户信息
+        User user = (User) request.getAttribute("user");
+        // 2.将视频放入不喜欢列表
+        stringRedisTemplate.opsForSet().add(RedisPre.USER_DISLIKED_+user.getId(),videoId.toString());
+        // 3.判断用户之前是否喜欢过这个视频
+        if (stringRedisTemplate.opsForSet().isMember(RedisPre.USER_LIKE_+user.getId(),videoId.toString())){
+            stringRedisTemplate.opsForSet().remove(RedisPre.USER_LIKE_+user.getId(),videoId.toString());
+            stringRedisTemplate.opsForValue().decrement(RedisPre.VIDEO_LIKED_COUNT+videoId);
+        }
+
     }
 
     /**
@@ -64,7 +155,7 @@ public class UserController {
      */
     @DeleteMapping("user/liked/{id}")
     @RequiredToken
-    public void disLiked(@PathVariable("id") Integer videoId, HttpServletRequest request){
+    public void delLiked(@PathVariable("id") Integer videoId, HttpServletRequest request){
         // 1.获取用户信息
         User user = (User) request.getAttribute("user");
         log.info("接收到的视频id为：{}",videoId);
@@ -75,7 +166,10 @@ public class UserController {
         // 3.将点按视频移除
         stringRedisTemplate.opsForSet().remove(RedisPre.USER_LIKE_+ user.getId(),videoId.toString());
 
-        // 4.
+        // 4.判断用户是否不喜欢该视频
+        if (stringRedisTemplate.opsForSet().isMember(RedisPre.USER_DISLIKED_+user.getId(),videoId.toString())){
+            stringRedisTemplate.opsForSet().remove(RedisPre.USER_DISLIKED_+user.getId(),videoId.toString());
+        }
 
     }
 

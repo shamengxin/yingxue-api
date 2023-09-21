@@ -1,15 +1,19 @@
 package com.shamengxin.service.impl;
 
 import com.shamengxin.entity.Played;
+import com.shamengxin.feignclients.VideosClient;
 import com.shamengxin.mapper.PlayedMapper;
 import com.shamengxin.service.PlayedService;
+import com.shamengxin.vo.VideoVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
-import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 播放历史(Played)表服务实现类
@@ -19,8 +23,15 @@ import java.util.Date;
  */
 @Service("playedService")
 public class PlayedServiceImpl implements PlayedService {
-    @Resource
     private PlayedMapper playedMapper;
+
+    private VideosClient videosClient;
+
+    @Autowired
+    public PlayedServiceImpl(PlayedMapper playedMapper, VideosClient videosClient) {
+        this.playedMapper = playedMapper;
+        this.videosClient = videosClient;
+    }
 
     /**
      * 通过ID查询单条数据
@@ -36,8 +47,8 @@ public class PlayedServiceImpl implements PlayedService {
     /**
      * 分页查询
      *
-     * @param played 筛选条件
-     * @param pageRequest      分页对象
+     * @param played      筛选条件
+     * @param pageRequest 分页对象
      * @return 查询结果
      */
     @Override
@@ -86,6 +97,20 @@ public class PlayedServiceImpl implements PlayedService {
 
     @Override
     public Played findByUidAndVideoId(Integer uid, Integer videoId) {
-        return playedMapper.findByUidAndVideoId(uid,videoId);
+        return playedMapper.findByUidAndVideoId(uid, videoId);
+    }
+
+    @Override
+    public List<VideoVO> queryByUid(Integer uid, Integer page, Integer rows) {
+
+        Integer start = (page - 1) * rows;
+        List<Played> playeds = playedMapper.queryByUid(uid, start, rows);
+
+        List<Integer> ids = new ArrayList<>();
+        playeds.forEach(played -> {
+            ids.add(played.getUid());
+        });
+
+        return videosClient.getVideos(ids);
     }
 }

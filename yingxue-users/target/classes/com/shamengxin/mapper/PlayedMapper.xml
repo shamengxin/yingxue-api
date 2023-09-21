@@ -78,13 +78,6 @@
         from played
         where uid = #{uid} and video_id=#{videoId}
     </select>
-    <select id="queryByUid" resultMap="PlayedMap">
-        select
-            id, uid, video_id, created_at, updated_at, deleted_at
-        from played
-        where uid = #{uid}
-        limit #{start},#{rows}
-    </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">

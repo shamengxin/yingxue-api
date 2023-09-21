@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shamengxin.contants.RedisPre;
 import com.shamengxin.entity.Category;
+import com.shamengxin.entity.Favorite;
 import com.shamengxin.entity.User;
 import com.shamengxin.entity.Video;
 import com.shamengxin.feignclients.CategoriesClient;
@@ -125,12 +126,24 @@ public class VideoServiceImpl implements VideoService {
             // a.是否点赞
             videoDetail.setLiked(stringRedisTemplate.opsForSet().isMember(RedisPre.USER_LIKE_+userLogin.getId(),videoId.toString()));
             // b.是否不喜欢
+            videoDetail.setDisliked(stringRedisTemplate.opsForSet().isMember(RedisPre.USER_DISLIKED_+user.getId(),videoId.toString()));
             // c.是否收藏
+            Favorite favorite = usersClient.favorite(videoId,user.getId());
+            if (!ObjectUtils.isEmpty(favorite)){
+                videoDetail.setFavorite(true);
+            }
         }
 
 
 
         return videoDetail;
+    }
+
+    @Override
+    public VideoVO queryById(Integer id) {
+
+        Video video = videoMapper.queryById(id);
+        return this.getVideoVO(video);
     }
 
     // 将video对象转化为videoVO对象

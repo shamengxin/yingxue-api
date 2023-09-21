@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.shamengxin.mapper.PlayedMapper">
+<mapper namespace="com.shamengxin.mapper.FavoriteMapper">
 
-    <resultMap type="com.shamengxin.entity.Played" id="PlayedMap">
+    <resultMap type="com.shamengxin.entity.Favorite" id="FavoriteMap">
         <result property="id" column="id" jdbcType="INTEGER"/>
         <result property="uid" column="uid" jdbcType="INTEGER"/>
         <result property="videoId" column="video_id" jdbcType="INTEGER"/>
@@ -12,18 +12,18 @@
     </resultMap>
 
     <!--查询单个-->
-    <select id="queryById" resultMap="PlayedMap">
+    <select id="queryById" resultMap="FavoriteMap">
         select
           id, uid, video_id, created_at, updated_at, deleted_at
-        from played
+        from favorite
         where id = #{id}
     </select>
 
     <!--查询指定行数据-->
-    <select id="queryAllByLimit" resultMap="PlayedMap">
+    <select id="queryAllByLimit" resultMap="FavoriteMap">
         select
           id, uid, video_id, created_at, updated_at, deleted_at
-        from played
+        from favorite
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -50,7 +50,7 @@
     <!--统计总行数-->
     <select id="count" resultType="java.lang.Long">
         select count(1)
-        from played
+        from favorite
         <where>
             <if test="id != null">
                 and id = #{id}
@@ -72,28 +72,21 @@
             </if>
         </where>
     </select>
-    <select id="findByUidAndVideoId" resultMap="PlayedMap">
+    <select id="findByUidAndVideoId" resultMap="FavoriteMap">
         select
             id, uid, video_id, created_at, updated_at, deleted_at
-        from played
-        where uid = #{uid} and video_id=#{videoId}
-    </select>
-    <select id="queryByUid" resultMap="PlayedMap">
-        select
-            id, uid, video_id, created_at, updated_at, deleted_at
-        from played
-        where uid = #{uid}
-        limit #{start},#{rows}
+        from favorite
+        where uid = #{uid} and video_id = #{videoId}
     </select>
 
     <!--新增所有列-->
     <insert id="insert" keyProperty="id" useGeneratedKeys="true">
-        insert into played(uid, video_id, created_at, updated_at, deleted_at)
+        insert into favorite(uid, video_id, created_at, updated_at, deleted_at)
         values (#{uid}, #{videoId}, #{createdAt}, #{updatedAt}, #{deletedAt})
     </insert>
 
     <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into played(uid, video_id, created_at, updated_at, deleted_at)
+        insert into favorite(uid, video_id, created_at, updated_at, deleted_at)
         values
         <foreach collection="entities" item="entity" separator=",">
         (#{entity.uid}, #{entity.videoId}, #{entity.createdAt}, #{entity.updatedAt}, #{entity.deletedAt})
@@ -101,7 +94,7 @@
     </insert>
 
     <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
-        insert into played(uid, video_id, created_at, updated_at, deleted_at)
+        insert into favorite(uid, video_id, created_at, updated_at, deleted_at)
         values
         <foreach collection="entities" item="entity" separator=",">
             (#{entity.uid}, #{entity.videoId}, #{entity.createdAt}, #{entity.updatedAt}, #{entity.deletedAt})
@@ -116,7 +109,7 @@
 
     <!--通过主键修改数据-->
     <update id="update">
-        update played
+        update favorite
         <set>
             <if test="uid != null">
                 uid = #{uid},
@@ -139,7 +132,10 @@
 
     <!--通过主键删除-->
     <delete id="deleteById">
-        delete from played where id = #{id}
+        delete from favorite where id = #{id}
+    </delete>
+    <delete id="deleteByUidAndVideoId">
+        delete from favorite where uid = #{uid} and video_id = #{videoId}
     </delete>
 
 </mapper>
