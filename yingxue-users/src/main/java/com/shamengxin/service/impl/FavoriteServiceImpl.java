@@ -1,14 +1,19 @@
 package com.shamengxin.service.impl;
 
 import com.shamengxin.entity.Favorite;
+import com.shamengxin.entity.Played;
+import com.shamengxin.feignclients.VideosClient;
 import com.shamengxin.mapper.FavoriteMapper;
 import com.shamengxin.service.FavoriteService;
+import com.shamengxin.vo.VideoVO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
-import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 收藏(Favorite)表服务实现类
@@ -18,8 +23,16 @@ import javax.annotation.Resource;
  */
 @Service("favoriteService")
 public class FavoriteServiceImpl implements FavoriteService {
-    @Resource
+
     private FavoriteMapper favoriteMapper;
+
+    private VideosClient videosClient;
+
+    @Autowired
+    public FavoriteServiceImpl(FavoriteMapper favoriteMapper, VideosClient videosClient) {
+        this.favoriteMapper = favoriteMapper;
+        this.videosClient = videosClient;
+    }
 
     /**
      * 通过ID查询单条数据
@@ -89,5 +102,20 @@ public class FavoriteServiceImpl implements FavoriteService {
     @Override
     public void deleteByUidAndVideoId(Integer uid, Integer videoId) {
         favoriteMapper.deleteByUidAndVideoId(uid, videoId);
+    }
+
+    @Override
+    public List<VideoVO> queryByUid(Integer uid, Integer page, Integer rows) {
+
+        Integer start = (page - 1) * rows;
+
+        List<Favorite> favorites = favoriteMapper.queryByUid(uid, start, rows);
+
+        List<Integer> ids = new ArrayList<>();
+        favorites.forEach(favorite -> {
+            ids.add(favorite.getVideoId());
+        });
+
+        return videosClient.getVideos(ids);
     }
 }

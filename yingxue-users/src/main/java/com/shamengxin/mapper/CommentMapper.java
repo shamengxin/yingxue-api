@@ -1,19 +1,17 @@
 package com.shamengxin.mapper;
 
-import com.shamengxin.entity.Favorite;
-import org.apache.ibatis.annotations.Mapper;
+import com.shamengxin.entity.Comment;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 /**
- * 收藏(Favorite)表数据库访问层
+ * 评论(Comment)表数据库访问层
  *
  * @author makejava
- * @since 2023-09-21 22:53:39
+ * @since 2023-09-22 09:16:36
  */
-@Mapper
-public interface FavoriteMapper {
+public interface CommentMapper {
 
     /**
      * 通过ID查询单条数据
@@ -21,57 +19,57 @@ public interface FavoriteMapper {
      * @param id 主键
      * @return 实例对象
      */
-    Favorite queryById(Integer id);
+    Comment queryById(Integer id);
 
     /**
      * 查询指定行数据
      *
-     * @param favorite 查询条件
+     * @param comment 查询条件
      * @param pageable         分页对象
      * @return 对象列表
      */
-    List<Favorite> queryAllByLimit(Favorite favorite, @Param("pageable") Pageable pageable);
+    List<Comment> queryAllByLimit(Comment comment, @Param("pageable") Pageable pageable);
 
     /**
      * 统计总行数
      *
-     * @param favorite 查询条件
+     * @param comment 查询条件
      * @return 总行数
      */
-    long count(Favorite favorite);
+    long count(Comment comment);
 
     /**
      * 新增数据
      *
-     * @param favorite 实例对象
+     * @param comment 实例对象
      * @return 影响行数
      */
-    int insert(Favorite favorite);
+    int insert(Comment comment);
 
     /**
      * 批量新增数据（MyBatis原生foreach方法）
      *
-     * @param entities List<Favorite> 实例对象列表
+     * @param entities List<Comment> 实例对象列表
      * @return 影响行数
      */
-    int insertBatch(@Param("entities") List<Favorite> entities);
+    int insertBatch(@Param("entities") List<Comment> entities);
 
     /**
      * 批量新增或按主键更新数据（MyBatis原生foreach方法）
      *
-     * @param entities List<Favorite> 实例对象列表
+     * @param entities List<Comment> 实例对象列表
      * @return 影响行数
      * @throws org.springframework.jdbc.BadSqlGrammarException 入参是空List的时候会抛SQL语句错误的异常，请自行校验入参
      */
-    int insertOrUpdateBatch(@Param("entities") List<Favorite> entities);
+    int insertOrUpdateBatch(@Param("entities") List<Comment> entities);
 
     /**
      * 修改数据
      *
-     * @param favorite 实例对象
+     * @param comment 实例对象
      * @return 影响行数
      */
-    int update(Favorite favorite);
+    int update(Comment comment);
 
     /**
      * 通过主键删除数据
@@ -81,11 +79,10 @@ public interface FavoriteMapper {
      */
     int deleteById(Integer id);
 
-    Favorite findByUidAndVideoId(@Param("videoId") Integer videoId,@Param("uid") Integer uid);
+    long findByVideoIdCounts(Integer videoId);
 
-    void deleteByUidAndVideoId(Integer uid, Integer videoId);
+    List<Comment> findByVideoId(Integer videoId, Integer start, Integer rows);
 
-    List<Favorite> queryByUid(@Param("uid") Integer uid,@Param("start") Integer start,@Param("rows") Integer rows);
-
+    List<Comment> queryByParentId(Integer id);
 }
 

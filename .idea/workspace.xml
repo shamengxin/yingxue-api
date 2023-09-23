@@ -4,30 +4,32 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="81a287da-b09b-4b5e-b6b2-7431b85799c5" name="更改" comment="视频播放增加视频播放次数、视频点赞，取消点赞">
-      <change afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/entity/Favorite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/mapper/FavoriteMapper.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/FavoriteService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/impl/FavoriteServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/resources/com/shamengxin/mapper/FavoriteMapper.xml" afterDir="false" />
+    <list default="true" id="81a287da-b09b-4b5e-b6b2-7431b85799c5" name="更改" comment="不喜欢，取消不喜欢，收藏，取消收藏，播放历史">
+      <change afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/entity/Comment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/vo/CommentVO.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/vo/Reviewer.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/mapper/CommentMapper.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/CommentService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/impl/CommentServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/yingxue-users/src/main/resources/com/shamengxin/mapper/CommentMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/easyCodeTableSetting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/easyCodeTableSetting.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/contants/RedisPre.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-commons/src/main/java/com/shamengxin/contants/RedisPre.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-commons/target/classes/com/shamengxin/contants/RedisPre.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-commons/target/classes/com/shamengxin/contants/RedisPre.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/controller/UserServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/controller/UserServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/feignclients/VideosClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/feignclients/VideosClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/mapper/PlayedMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/mapper/PlayedMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/PlayedService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/PlayedService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/impl/PlayedServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/impl/PlayedServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/resources/com/shamengxin/mapper/PlayedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/resources/com/shamengxin/mapper/PlayedMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/mapper/FavoriteMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/mapper/FavoriteMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/FavoriteService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/FavoriteService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/impl/FavoriteServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/service/impl/FavoriteServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/src/main/resources/com/shamengxin/mapper/FavoriteMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/src/main/resources/com/shamengxin/mapper/FavoriteMapper.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/controller/UserServiceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/controller/UserServiceController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/controller/VideoServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/controller/VideoServiceController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/feignclients/VideosClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/feignclients/VideosClient.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/mapper/PlayedMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/mapper/PlayedMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/mapper/PlayedMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/mapper/PlayedMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/service/PlayedService.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/service/PlayedService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/service/impl/PlayedServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-users/target/classes/com/shamengxin/service/impl/PlayedServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/controller/VideoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/controller/VideoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/feignclients/UsersClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/feignclients/UsersClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/service/VideoService.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/service/VideoService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/service/impl/VideoServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/src/main/java/com/shamengxin/service/impl/VideoServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/yingxue-videos/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/controller/VideoServiceController.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/controller/VideoServiceController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/feignclients/UsersClient.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/feignclients/UsersClient.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/service/VideoService.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/service/VideoService.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/service/impl/VideoServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/yingxue-videos/target/classes/com/shamengxin/service/impl/VideoServiceImpl.class" afterDir="false" />
     </list>
@@ -41,6 +43,7 @@
       <list>
         <option value="AnnotationType" />
         <option value="Interface" />
+        <option value="package-info" />
         <option value="Class" />
       </list>
     </option>
@@ -71,38 +74,38 @@
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_ADD_EXTERNAL_FILES": "true",
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RequestMappingsPanelOrder0": "0",
-    "RequestMappingsPanelOrder1": "1",
-    "RequestMappingsPanelWidth0": "75",
-    "RequestMappingsPanelWidth1": "75",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "jdk.selected.JAVA_MODULE": "corretto-17",
-    "last_opened_file_path": "B:/code/yingxue-api",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "模块",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.sourceCode",
-    "spring.configuration.checksum": "4d02905b470a4d7217d5cbbc67ae7f2e",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
+    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
+    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
+    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;corretto-17&quot;,
+    &quot;last_opened_file_path&quot;: &quot;B:/code/yingxue-api&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;模块&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.sourceCode&quot;,
+    &quot;spring.configuration.checksum&quot;: &quot;4d02905b470a4d7217d5cbbc67ae7f2e&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mysql"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mysql&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="ReactorSettings">
     <option name="notificationShown" value="true" />
   </component>
@@ -115,10 +118,10 @@
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="B:\code\yingxue-api\yingxue-users\src\main\resources\com\shamengxin\mapper" />
+      <recent name="B:\code\yingxue-api\yingxue-videos\src\main\resources\com\shamengxin\mapper" />
+      <recent name="B:\code\yingxue-api\yingxue-videos\src\main\resources\com" />
       <recent name="B:\code\yingxue-api\yingxue-videos\src\main\resources\com\shamengxin" />
       <recent name="B:\code\yingxue-api\yingxue-users\src\main\resources\com\shamengxin" />
-      <recent name="B:\code\yingxue-api\yingxue-users\src\main\resources\com" />
-      <recent name="B:\code\yingxue-api\yingxue-categories\src\main\resources\com\shamengxin" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="com.shamengxin.mapper" />
@@ -241,7 +244,10 @@
       <workItem from="1695016111174" duration="24342000" />
       <workItem from="1695135420386" duration="796000" />
       <workItem from="1695218898750" duration="7283000" />
-      <workItem from="1695305652497" duration="6381000" />
+      <workItem from="1695305652497" duration="6485000" />
+      <workItem from="1695312165297" duration="9000" />
+      <workItem from="1695341073295" duration="3380000" />
+      <workItem from="1695478956533" duration="4874000" />
     </task>
     <task id="LOCAL-00001" summary="应学用户端接口项目创建">
       <created>1694270753696</created>
@@ -313,7 +319,14 @@
       <option name="project" value="LOCAL" />
       <updated>1695226177801</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="不喜欢，取消不喜欢，收藏，取消收藏，播放历史">
+      <created>1695312135076</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1695312135076</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -340,20 +353,16 @@
     <MESSAGE value="视频上传修改" />
     <MESSAGE value="视频上传，首页视频推荐列表，视频搜索，视频列表，视频详情" />
     <MESSAGE value="视频播放增加视频播放次数、视频点赞，取消点赞" />
-    <option name="LAST_COMMIT_MESSAGE" value="视频播放增加视频播放次数、视频点赞，取消点赞" />
+    <MESSAGE value="不喜欢，取消不喜欢，收藏，取消收藏，播放历史" />
+    <option name="LAST_COMMIT_MESSAGE" value="不喜欢，取消不喜欢，收藏，取消收藏，播放历史" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
+        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/yingxue-search/src/main/java/com/shamengxin/service/impl/SearchServiceImpl.java</url>
           <line>65</line>
           <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/yingxue-users/src/main/java/com/shamengxin/interceptors/TokenInterceptor.java</url>
-          <line>30</line>
-          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

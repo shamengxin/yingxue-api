@@ -1,6 +1,7 @@
 package com.shamengxin.controller;
 
 
+import com.shamengxin.feignclients.UsersClient;
 import com.shamengxin.service.VideoService;
 import com.shamengxin.vo.VideoDetail;
 import com.shamengxin.vo.VideoVO;
@@ -8,8 +9,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 视频(Video)表控制层
@@ -21,14 +22,34 @@ import java.util.List;
 @RestController
 public class VideoController {
 
-
     private VideoService videoService;
 
+    private UsersClient usersClient;
+
+
     @Autowired
-    public VideoController(VideoService videoService) {
+    public VideoController(VideoService videoService, UsersClient usersClient) {
         this.videoService = videoService;
+        this.usersClient = usersClient;
     }
 
+    @GetMapping("video/{videoId}/comments")
+    public Map<String,Object> comments(@RequestParam(value = "page",defaultValue = "1") Integer page,
+                                       @RequestParam(value = "per_page",defaultValue = "5") Integer rows,
+                                       @PathVariable("videoId") Integer videoId){
+        log.info("视频id：{}",videoId);
+        log.info("当前页：{}",page);
+        log.info("每页显示记录条数：{}",rows);
+
+        return usersClient.comments(videoId,page,rows);
+    }
+
+    /**
+     * 获取视频的详细信息
+     * @param videoId
+     * @param token
+     * @return
+     */
     @GetMapping("videos/{id}")
     public VideoDetail detail(@PathVariable("id" ) Integer videoId ,@RequestParam(value = "token",required = false) String token){
         return videoService.detail(videoId,token);

@@ -6,12 +6,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.shamengxin.annotations.RequiredToken;
 import com.shamengxin.contants.RedisPre;
 
-import com.shamengxin.entity.Favorite;
-import com.shamengxin.entity.Played;
-import com.shamengxin.entity.User;
-import com.shamengxin.entity.Video;
+import com.shamengxin.entity.*;
+import com.shamengxin.service.CommentService;
 import com.shamengxin.service.FavoriteService;
 import com.shamengxin.service.PlayedService;
+import com.shamengxin.vo.CommentVO;
+import com.shamengxin.vo.Reviewer;
 import com.shamengxin.vo.VideoVO;
 import com.shamengxin.feignclients.CategoriesClient;
 import com.shamengxin.feignclients.VideosClient;
@@ -20,7 +20,6 @@ import com.shamengxin.util.ImageUtils;
 import com.shamengxin.util.OSSUtils;
 import com.shamengxin.utils.JSONUtils;
 import com.shamengxin.vo.MsgVO;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.io.FilenameUtils;
 import org.springframework.beans.BeanUtils;
@@ -49,17 +48,95 @@ public class UserController {
 
     private FavoriteService favoriteService;
 
+    private CommentService commentService;
+
     @Autowired
-    public UserController(StringRedisTemplate stringRedisTemplate, UserService userService, VideosClient videosClient, CategoriesClient categoriesClient, PlayedService playedService, FavoriteService favoriteService) {
+    public UserController(StringRedisTemplate stringRedisTemplate, UserService userService, VideosClient videosClient, CategoriesClient categoriesClient, PlayedService playedService, FavoriteService favoriteService, CommentService commentService) {
         this.stringRedisTemplate = stringRedisTemplate;
         this.userService = userService;
         this.videosClient = videosClient;
         this.categoriesClient = categoriesClient;
         this.playedService = playedService;
         this.favoriteService = favoriteService;
+        this.commentService = commentService;
     }
 
+    @GetMapping("user/comments")
+    Map<String,Object> comments(@RequestParam(value = "page",defaultValue = "1") Integer page,
+                                @RequestParam(value = "per_page",defaultValue = "5") Integer rows,
+                                @PathVariable("videoId") Integer videoId){
+        Map<String,Object> result = new HashMap<>();
+        // 1.获取评论总数
+        Long total_counts = commentService.findByVideoIdCounts(videoId);
+        result.put("total_count",total_counts);
+        List<CommentVO> commentVOS = new ArrayList<>();
+        // 2.获取父评论内容
+        List<Comment> comments = commentService.findByVideoId(videoId,page,rows);
+        // 3.遍历父评论
+        comments.forEach(comment -> {
+            // 4.将父评论转化为commentVO
+            CommentVO commentVO = new CommentVO();
+            BeanUtils.copyProperties(comment,commentVO);
+            // 5.获取评论作者信息
+            Reviewer reviewer = new Reviewer();
+            // 6.根据id查询作者信息
+            User user = userService.queryById(comment.getUid());
+            BeanUtils.copyProperties(user,reviewer);
+            // 7.设置评论作者
+            commentVO.setReviewer(reviewer);
+            // 8.获取子评论
+            List<Comment> subComments = commentService.queryByParentId(comment.getId());
+            // 9.将子评论转为commentVO
+            List<CommentVO> subCommentVOS = new ArrayList<>();
+            // 10.遍历子评论
+            subComments.forEach(child ->{
+                // 11.将子评论转化为commentVO
+                CommentVO subCommentVO = new CommentVO();
+                BeanUtils.copyProperties(child,subCommentVO);
+                // 12.获取评论作者信息
+                User subUser = userService.queryById(child.getUid());
+                Reviewer subReviewer = new Reviewer();
+                BeanUtils.copyProperties(subUser,subReviewer);
+                // 13.设置评论者
+                subCommentVO.setReviewer(subReviewer);
+                subCommentVOS.add(subCommentVO);
+            } );
+            // 14.设置子评论
+            commentVO.setSubComments(subCommentVOS);
+            commentVOS.add(commentVO);
+        });
+        result.put("items",commentVOS);
+        return result;
+    }
 
+    /**
+     * 视频收藏列表
+     * @param page
+     * @param rows
+     * @param request
+     * @return
+     */
+    @GetMapping("user/favorites")
+    @RequiredToken
+    public List<VideoVO> favorites(@RequestParam(value = "page",defaultValue = "1") Integer page,
+                                   @RequestParam(value = "per_page",defaultValue = "5") Integer rows,
+                                   HttpServletRequest request){
+        // 1.获取用户信息
+        User user = (User) request.getAttribute("user");
+        // 2.获取用户的喜欢列表
+        if (ObjectUtils.isEmpty(user)) throw new RuntimeException("提示: 无效token!");
+        List<VideoVO> videoVOS = favoriteService.queryByUid(user.getId(),page,rows);
+        log.info("用户收藏的视频总数：{}",videoVOS.size());
+        return videoVOS;
+    }
+
+    /**
+     * 播放历史
+     * @param page
+     * @param rows
+     * @param request
+     * @return
+     */
     @GetMapping("user/played")
     @RequiredToken
     public List<VideoVO> played(@RequestParam(value = "page",defaultValue = "1") Integer page,
