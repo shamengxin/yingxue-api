@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -54,6 +55,9 @@ public class CommentServiceImpl implements CommentService {
      */
     @Override
     public Comment insert(Comment comment) {
+        Date date = new Date();
+        comment.setCreatedAt(date);
+        comment.setUpdatedAt(date);
         this.commentMapper.insert(comment);
         return comment;
     }

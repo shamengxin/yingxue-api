@@ -1,6 +1,7 @@
 package com.shamengxin.mapper;
 
 import com.shamengxin.entity.Comment;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.data.domain.Pageable;
 import java.util.List;
@@ -11,6 +12,7 @@ import java.util.List;
  * @author makejava
  * @since 2023-09-22 09:16:36
  */
+@Mapper
 public interface CommentMapper {
 
     /**

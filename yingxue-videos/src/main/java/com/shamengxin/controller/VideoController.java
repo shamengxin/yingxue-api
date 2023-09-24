@@ -1,14 +1,21 @@
 package com.shamengxin.controller;
 
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.shamengxin.contants.RedisPre;
+import com.shamengxin.entity.Comment;
+import com.shamengxin.entity.User;
 import com.shamengxin.feignclients.UsersClient;
 import com.shamengxin.service.VideoService;
 import com.shamengxin.vo.VideoDetail;
 import com.shamengxin.vo.VideoVO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -26,14 +33,38 @@ public class VideoController {
 
     private UsersClient usersClient;
 
+    private StringRedisTemplate stringRedisTemplate;
+
 
     @Autowired
-    public VideoController(VideoService videoService, UsersClient usersClient) {
+    public VideoController(VideoService videoService, UsersClient usersClient, StringRedisTemplate stringRedisTemplate) {
         this.videoService = videoService;
         this.usersClient = usersClient;
+        this.stringRedisTemplate = stringRedisTemplate;
     }
 
-    @GetMapping("video/{videoId}/comments")
+    @PostMapping("videos/{videoId}/comments")
+    public void comments(@PathVariable("videoId") Integer videoId,
+                         @RequestBody Comment comment, HttpServletRequest request) throws JsonProcessingException {
+        String token = request.getParameter("token");
+        String key = RedisPre.SESSION+token;
+        String userJson= stringRedisTemplate.opsForValue().get(key);
+        User user = new ObjectMapper().readValue(userJson, User.class);
+        comment.setVideoId(videoId);
+        comment.setUid(user.getId());
+
+        usersClient.comments(comment);
+
+    }
+
+    /**
+     * 查询视频评论
+     * @param page
+     * @param rows
+     * @param videoId
+     * @return
+     */
+    @GetMapping("videos/{videoId}/comments")
     public Map<String,Object> comments(@RequestParam(value = "page",defaultValue = "1") Integer page,
                                        @RequestParam(value = "per_page",defaultValue = "5") Integer rows,
                                        @PathVariable("videoId") Integer videoId){
@@ -41,7 +72,7 @@ public class VideoController {
         log.info("当前页：{}",page);
         log.info("每页显示记录条数：{}",rows);
 
-        return usersClient.comments(videoId,page,rows);
+        return usersClient.comments(page,rows,videoId);
     }
 
     /**
